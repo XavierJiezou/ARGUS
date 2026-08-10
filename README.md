@@ -11,7 +11,7 @@ Multi-Agent Forensic Reasoning for Generalizable Deepfake Video Detection
 [![HuggingFace Space](https://img.shields.io/badge/%F0%9F%A4%97HuggingFace-Space-yellow)](https://huggingface.co/spaces/XavierJiezou/ARGUS)
 [![HuggingFace Models](https://img.shields.io/badge/%F0%9F%A4%97HuggingFace-Models-green)](https://huggingface.co/XavierJiezou/argus-models)
 [![HuggingFace Datasets](https://img.shields.io/badge/%F0%9F%A4%97HuggingFace-Datasets-orange)](https://huggingface.co/datasets/XavierJiezou/ARGUS-datasets)
-[![License: Apache 2.0](https://img.shields.io/badge/License-Apache%202.0-lightgrey.svg)](LICENSE)
+<!--[![License: Apache 2.0](https://img.shields.io/badge/License-Apache%202.0-lightgrey.svg)](LICENSE)-->
 <!--[![arXiv](https://img.shields.io/badge/arXiv-TODO-b31b1b.svg)](ARXIV_LINK_TO_BE_ADDED)-->
 
 ![ARGUS method pipeline](assets/method_pipeline.png)
