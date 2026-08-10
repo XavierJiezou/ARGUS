@@ -1,0 +1,466 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="title" content="Multi-Agent Forensic Reasoning for Generalizable Deepfake Video Detection">
+  <meta name="description" content="FaceVid-Forensics-100K and a multi-agent framework for evidence-grounded, generalizable deepfake video detection.">
+  <meta name="keywords" content="deepfake detection, video forensics, multimodal large language models, multi-agent reasoning, FaceVid-Forensics-100K">
+  <meta name="author" content="Xuechao Zou, Shun Zhang, Kai Li, Yi Zhou, Xinyu Sun, Yuhui Chen, Zhe Wu, Congyan Lang, Junliang Xing">
+  <meta name="robots" content="index, follow">
+
+  <meta property="og:type" content="article">
+  <meta property="og:site_name" content="FaceVid-Forensics">
+  <meta property="og:title" content="Multi-Agent Forensic Reasoning for Generalizable Deepfake Video Detection">
+  <meta property="og:description" content="A 100K-video forensic benchmark and a multi-agent framework that independently examines texture, lighting, motion, and physics.">
+  <meta property="og:image" content="static/images/paper_fig1.png">
+  <meta property="og:image:alt" content="Comparison of single-model and multi-agent deepfake video detection">
+  <meta name="twitter:card" content="summary_large_image">
+  <meta name="twitter:title" content="Multi-Agent Forensic Reasoning for Generalizable Deepfake Video Detection">
+  <meta name="twitter:description" content="FaceVid-Forensics-100K and multi-agent forensic reasoning for generalizable deepfake video detection.">
+  <meta name="twitter:image" content="static/images/paper_fig1.png">
+
+  <meta name="citation_title" content="Multi-Agent Forensic Reasoning for Generalizable Deepfake Video Detection">
+  <meta name="citation_author" content="Zou, Xuechao">
+  <meta name="citation_author" content="Zhang, Shun">
+  <meta name="citation_author" content="Li, Kai">
+  <meta name="citation_author" content="Zhou, Yi">
+  <meta name="citation_author" content="Sun, Xinyu">
+  <meta name="citation_author" content="Chen, Yuhui">
+  <meta name="citation_author" content="Wu, Zhe">
+  <meta name="citation_author" content="Lang, Congyan">
+  <meta name="citation_author" content="Xing, Junliang">
+  <meta name="citation_publication_date" content="2027">
+  <meta name="citation_pdf_url" content="static/pdfs/paper.pdf">
+
+  <title>Multi-Agent Forensic Reasoning for Generalizable Deepfake Video Detection</title>
+  <link rel="icon" type="image/x-icon" href="favicon.ico?v=20260807-2">
+  <link rel="shortcut icon" type="image/x-icon" href="favicon.ico?v=20260807-2">
+  <link rel="icon" type="image/png" sizes="32x32" href="static/images/favicon-32x32.png?v=20260807-2">
+  <link rel="icon" type="image/png" sizes="16x16" href="static/images/favicon-16x16.png?v=20260807-2">
+  <link rel="icon" type="image/png" sizes="192x192" href="static/images/favicon-logo.png?v=20260807-2">
+  <link rel="apple-touch-icon" sizes="180x180" href="static/images/apple-touch-icon.png?v=20260807-2">
+  <link rel="stylesheet" href="static/css/bulma.min.css">
+  <link rel="stylesheet" href="static/css/index.css?v=20260808-3">
+  <script defer src="static/js/fontawesome.all.min.js"></script>
+  <script defer src="static/js/index.js?v=20260808-3"></script>
+
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "ScholarlyArticle",
+    "headline": "Multi-Agent Forensic Reasoning for Generalizable Deepfake Video Detection",
+    "author": [
+      {"@type":"Person","name":"Xuechao Zou"},
+      {"@type":"Person","name":"Shun Zhang"},
+      {"@type":"Person","name":"Kai Li"},
+      {"@type":"Person","name":"Yi Zhou"},
+      {"@type":"Person","name":"Xinyu Sun"},
+      {"@type":"Person","name":"Yuhui Chen"},
+      {"@type":"Person","name":"Zhe Wu"},
+      {"@type":"Person","name":"Congyan Lang"},
+      {"@type":"Person","name":"Junliang Xing"}
+    ],
+    "datePublished": "2027",
+    "keywords": ["deepfake detection", "video forensics", "multi-agent reasoning", "multimodal large language models"],
+    "isAccessibleForFree": true
+  }
+  </script>
+</head>
+<body>
+  <main>
+    <section class="hero publication-header">
+      <div class="hero-body">
+        <div class="container is-max-desktop">
+          <div class="columns is-centered">
+            <div class="column has-text-centered">
+              <p class="publication-kicker"><span></span>FaceVid-Forensics-100K · ARGUS<span></span></p>
+              <h1 class="title is-1 publication-title">
+                <span>Multi-Agent Forensic Reasoning</span>
+                <span>for Generalizable Deepfake</span>
+                <span>Video Detection</span>
+              </h1>
+
+              <div class="is-size-5 publication-authors" aria-label="Authors">
+                <span class="author-block">Xuechao Zou<sup>1</sup>,</span>
+                <span class="author-block">Shun Zhang<sup>1</sup>,</span>
+                <span class="author-block">Kai Li<sup>2</sup>,</span>
+                <span class="author-block">Yi Zhou<sup>1</sup>,</span>
+                <span class="author-block">Xinyu Sun<sup>1</sup>,</span>
+                <span class="author-block">Yuhui Chen<sup>3</sup>,</span>
+                <span class="author-block">Zhe Wu<sup>2</sup>,</span>
+                <span class="author-block">Congyan Lang<sup>1</sup>,</span>
+                <span class="author-block">Junliang Xing<sup>2</sup></span>
+              </div>
+
+              <div class="is-size-6 publication-affiliations">
+                <span class="author-block"><sup>1</sup>Beijing Jiaotong University</span>
+                <span class="author-block"><sup>2</sup>Tsinghua University</span>
+                <span class="author-block"><sup>3</sup>Ant Group</span>
+              </div>
+
+              <div class="publication-links">
+                <span class="link-block">
+                  <a href="https://arxiv.org/abs/2608.06865" target="_blank" rel="noopener" class="external-link button is-normal is-rounded is-dark">
+                    <span class="icon"><i class="fas fa-file-pdf"></i></span><span>Paper</span>
+                  </a>
+                </span>
+                <span class="link-block">
+                  <a href="https://github.com/XavierJiezou/ARGUS" target="_blank" rel="noopener" class="external-link button is-normal is-rounded is-dark">
+                    <span class="icon"><i class="fab fa-github"></i></span><span>Code</span>
+                  </a>
+                </span>
+                <span class="link-block">
+                  <a href="https://huggingface.co/XavierJiezou/argus-models" target="_blank" rel="noopener" aria-label="ARGUS pretrained models on Hugging Face" class="external-link button is-normal is-rounded is-dark">
+                    <span class="icon hf-icon" aria-hidden="true">🤗</span><span>Models</span>
+                  </a>
+                </span>
+                <span class="link-block">
+                  <a href="https://huggingface.co/datasets/XavierJiezou/argus-datasets" target="_blank" rel="noopener" aria-label="ARGUS datasets on Hugging Face" class="external-link button is-normal is-rounded is-dark">
+                    <span class="icon hf-icon" aria-hidden="true">🤗</span><span>Dataset</span>
+                  </a>
+                </span>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section class="hero teaser">
+      <div class="container is-max-desktop">
+        <div class="hero-body">
+          <figure class="paper-figure teaser-figure">
+            <img src="static/images/paper_fig1.png" alt="A single MLLM misses subtle artifacts while four specialist agents and a judge reach the correct decision">
+            <figcaption><strong>Figure 1: Framework comparison.</strong> A single MLLM often overlooks subtle forensic artifacts, which can lead to incorrect predictions. In contrast, our multi-agent framework employs specialized agents to examine the input video from four distinct forensic perspectives: texture, lighting, motion, and physics. A judge agent then aggregates their findings to produce a more reliable explanation and final prediction of whether the video under analysis is ultimately real or fake.</figcaption>
+          </figure>
+        </div>
+      </div>
+    </section>
+
+    <section class="section hero is-light" id="abstract">
+      <div class="container is-max-desktop">
+        <div class="columns is-centered has-text-centered">
+          <div class="column is-four-fifths">
+            <h2 class="title is-3">Abstract</h2>
+            <div class="content has-text-justified">
+              <p>The malicious use of generative artificial intelligence to create highly realistic deepfake videos raises serious ethical concerns and poses substantial challenges to AI safety. However, existing deepfake video benchmarks provide limited coverage of recent synthesis methods and generally lack reliable fine-grained textual annotations. Meanwhile, conventional detectors and multimodal large language models (MLLMs), whether operating as a single model or relying on a single analytical perspective, often fail to capture subtle forgery artifacts, limiting their generalization to emerging AI-generated methods. To address these limitations, we introduce FaceVid-Forensics-100K, a large-scale deepfake video dataset comprising 100,000 videos and spanning 33 synthesis methods across face swapping, face reenactment, and entire-face synthesis, including recent generators such as Seedance 2.0. The dataset provides fine-grained textual annotations of visual observations and verdict-consistent forensic explanations, automatically synthesized through a multi-model aggregation and conflict-resolution pipeline powered by advanced MLLMs. Building on this benchmark, we propose a multi-agent forensic reasoning framework that employs four specialized domain-expert agents to independently analyze forgery cues from four perspectives: texture, lighting, motion, and physics. A judge agent then reconciles their reports to produce a final prediction together with an explanation. Extensive evaluations on out-of-domain test sets show that, despite being composed entirely of small open-source MLLMs, our framework outperforms all methods including closed-source GPT and Gemini models and ranks first across all reported metrics on this benchmark.</p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section class="section" id="overview">
+      <div class="container is-max-desktop">
+        <h2 class="title is-3 has-text-centered">Overview</h2>
+        <div class="columns is-variable is-5 contribution-grid">
+          <div class="column">
+            <div class="contribution-item">
+              <p class="contribution-number">100K</p>
+              <h3 class="title is-5">Large-scale benchmark</h3>
+              <p>21,075 real and 78,925 fake videos, with training, in-domain, and out-of-domain protocols.</p>
+            </div>
+          </div>
+          <div class="column">
+            <div class="contribution-item">
+              <p class="contribution-number">33</p>
+              <h3 class="title is-5">Synthesis methods</h3>
+              <p>Broad coverage of face swapping, reenactment, and recent entire-face generators such as Seedance 2.0.</p>
+            </div>
+          </div>
+          <div class="column">
+            <div class="contribution-item">
+              <p class="contribution-number">4 + 1</p>
+              <h3 class="title is-5">Specialized reasoning</h3>
+              <p>Four independent observers collect evidence; a separate judge resolves agreement and conflict.</p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section class="section hero is-light" id="method">
+      <div class="container is-max-desktop">
+        <h2 class="title is-3 has-text-centered">Multi-Agent Forensic Reasoning</h2>
+        <p class="section-lead">ARGUS separates evidence collection from decision making. Each observer is optimized for one forensic dimension and does not issue a final verdict.</p>
+        <figure class="paper-figure">
+          <img src="static/images/method_pipeline.png" alt="ARGUS pipeline with texture, lighting, motion, physics, and judge agents" loading="lazy">
+          <figcaption><strong>Method pipeline.</strong> Four independent observation agents produce inspectable reports. The judge combines those reports, optionally with sampled video frames, into an explanation and final decision.</figcaption>
+        </figure>
+        <div class="columns is-variable is-5 method-steps">
+          <div class="column"><h3 class="title is-5">1. Observe independently</h3><p>Specialization encourages systematic cue discovery and prevents one early interpretation from anchoring every perspective.</p></div>
+          <div class="column"><h3 class="title is-5">2. Reconcile evidence</h3><p>The judge weighs corroborating and conflicting reports rather than treating a single salient artifact as decisive.</p></div>
+          <div class="column"><h3 class="title is-5">3. Explain the verdict</h3><p>The output pairs a binary prediction with a concise forensic rationale grounded in the observations.</p></div>
+        </div>
+      </div>
+    </section>
+
+    <section class="section" id="dataset">
+      <div class="container is-max-desktop">
+        <h2 class="title is-3 has-text-centered">FaceVid-Forensics-100K</h2>
+        <p class="section-lead">The benchmark targets generalization to emerging generators and provides more than binary supervision.</p>
+        <figure class="paper-figure">
+          <img src="static/images/dataset_overview.png" alt="FaceVid-Forensics-100K domain distribution, evaluation protocol, and forgery types" loading="lazy">
+          <figcaption><strong>Dataset overview.</strong> The benchmark spans 33 synthesis methods and explicitly separates seen sources from unseen identities and generators.</figcaption>
+        </figure>
+
+        <h3 class="title is-4 subsection-title">Annotation pipeline</h3>
+        <figure class="paper-figure">
+          <img src="static/images/paper_fig3.png" alt="Observation-label and explanation-label aggregation pipeline" loading="lazy">
+          <figcaption><strong>Fine-grained labels.</strong> Multiple open- and closed-source MLLMs provide independent reports. Dedicated aggregation stages consolidate dimension-specific observations and produce verdict-consistent explanations.</figcaption>
+        </figure>
+      </div>
+    </section>
+
+    <section class="section hero is-light" id="results">
+      <div class="container is-max-desktop">
+        <h2 class="title is-3 has-text-centered">Out-of-Domain Results</h2>
+        <p class="section-lead">The full system ranks first across all reported metrics on the OOD test set.</p>
+
+        <div class="columns is-centered metric-row">
+          <div class="column is-one-quarter"><div class="metric-card"><span>Accuracy</span><strong>69.87</strong></div></div>
+          <div class="column is-one-quarter"><div class="metric-card"><span>Recall</span><strong>81.82</strong></div></div>
+          <div class="column is-one-quarter"><div class="metric-card"><span>F1 score</span><strong>53.28</strong></div></div>
+        </div>
+
+        <div class="table-container result-table-wrap">
+          <table class="table is-fullwidth is-hoverable result-table">
+            <thead><tr><th>Method</th><th class="has-text-right">Accuracy</th><th class="has-text-right">Recall</th><th class="has-text-right">F1</th></tr></thead>
+            <tbody>
+              <tr class="group-row"><td colspan="4">Small vision models</td></tr>
+              <tr><td>DFGaze (TIFS&rsquo;24)</td><td class="has-text-right">56.67</td><td class="has-text-right">17.92</td><td class="has-text-right">27.24</td></tr>
+              <tr><td>DFD-FCG (CVPR&rsquo;25)</td><td class="has-text-right">61.25</td><td class="has-text-right">29.22</td><td class="has-text-right">39.16</td></tr>
+              <tr><td>Effort (ICML&rsquo;25)</td><td class="has-text-right">63.92</td><td class="has-text-right">34.79</td><td class="has-text-right">44.76</td></tr>
+              <tr><td>TALL++ (IJCV&rsquo;24)</td><td class="has-text-right">63.47</td><td class="has-text-right">42.97</td><td class="has-text-right">45.07</td></tr>
+              <tr><td>TFCU (CVPR&rsquo;25)</td><td class="has-text-right">64.28</td><td class="has-text-right">33.44</td><td class="has-text-right">45.20</td></tr>
+              <tr class="group-row"><td colspan="4">Open-source MLLMs</td></tr>
+              <tr><td>Qwen2.5-VL-7B</td><td class="has-text-right">35.94</td><td class="has-text-right">16.51</td><td class="has-text-right">13.24</td></tr>
+              <tr><td>InternVL3.5-8B</td><td class="has-text-right">37.87</td><td class="has-text-right">17.60</td><td class="has-text-right">14.53</td></tr>
+              <tr><td>MiMo-V2.5 (310B-A15B)</td><td class="has-text-right">49.85</td><td class="has-text-right">15.00</td><td class="has-text-right">18.69</td></tr>
+              <tr><td>Qwen3.6-35B-A3B</td><td class="has-text-right">53.17</td><td class="has-text-right">50.05</td><td class="has-text-right">35.72</td></tr>
+              <tr class="group-row"><td colspan="4">Closed-source MLLMs</td></tr>
+              <tr><td>GPT-4o (2024)</td><td class="has-text-right">57.63</td><td class="has-text-right">40.36</td><td class="has-text-right">37.55</td></tr>
+              <tr><td>GPT-5-mini (2025)</td><td class="has-text-right">59.31</td><td class="has-text-right">38.70</td><td class="has-text-right">39.00</td></tr>
+              <tr><td>Gemini-2.5-Pro (2025)</td><td class="has-text-right">63.78</td><td class="has-text-right">75.29</td><td class="has-text-right">47.45</td></tr>
+              <tr><td>Gemini-3.5-Flash (2026)</td><td class="has-text-right">63.34</td><td class="has-text-right">58.75</td><td class="has-text-right">46.22</td></tr>
+              <tr class="group-row"><td colspan="4">Forensics-tuned MLLMs</td></tr>
+              <tr><td>Skyra (CVPR&rsquo;26)</td><td class="has-text-right">60.50</td><td class="has-text-right">30.05</td><td class="has-text-right">38.30</td></tr>
+              <tr><td>VideoVeritas (ICML&rsquo;26)</td><td class="has-text-right">57.87</td><td class="has-text-right">78.96</td><td class="has-text-right">43.22</td></tr>
+              <tr class="group-row"><td colspan="4">Multi-agent system</td></tr>
+              <tr class="ours-row"><td><strong>Ours (w/o Video)</strong></td><td class="has-text-right">67.41</td><td class="has-text-right">65.00</td><td class="has-text-right">51.01</td></tr>
+              <tr class="ours-row best-row"><td><strong>Ours (w/ Video)</strong></td><td class="has-text-right"><strong>69.87</strong></td><td class="has-text-right"><strong>81.82</strong></td><td class="has-text-right"><strong>53.28</strong></td></tr>
+            </tbody>
+          </table>
+        </div>
+        <p class="table-note">Values are percentages. Results are reported on 7,636 OOD videos from 20 generators excluded from training.</p>
+      </div>
+    </section>
+
+    <section class="section" id="qualitative">
+      <div class="container is-max-desktop">
+        <h2 class="title is-3 has-text-centered">Qualitative Evidence</h2>
+        <p class="section-lead">Hover over the filmstrip to inspect the sampled frames, then switch among the four independent Observation Agents. The Judge Agent reconciles their reports into the final ARGUS verdict.</p>
+
+        <article class="evidence-study" data-case="case1">
+          <div class="case-study-head">
+            <div class="case-title-block">
+              <span class="case-figure-label">Appendix Figure 1</span>
+              <h3 class="title is-4">Subtle evidence distributed across frames</h3>
+              <span class="truth-tag verdict-fake">Ground truth · Fake</span>
+            </div>
+          </div>
+          <div class="case-study-grid">
+            <div class="case-viewer">
+              <div class="case-image-wrap">
+                <img class="case-image" src="static/images/cases/case1_f1.jpg" alt="Sampled frame 1 from Appendix Figure 1" decoding="async">
+                <span class="frame-label">Frame 01 / 09</span>
+              </div>
+              <div class="filmstrip" role="listbox" aria-label="Appendix Figure 1 sampled frames"></div>
+              <section class="frame-insight agent-observation" aria-label="Appendix Figure 1 observation agents">
+                <div class="observation-switcher" role="tablist" aria-label="Choose an observation agent">
+                  <button class="observation-tab active" type="button" role="tab" aria-selected="true" data-agent="texture">Texture</button>
+                  <button class="observation-tab" type="button" role="tab" aria-selected="false" data-agent="lighting">Lighting</button>
+                  <button class="observation-tab" type="button" role="tab" aria-selected="false" data-agent="motion">Motion</button>
+                  <button class="observation-tab" type="button" role="tab" aria-selected="false" data-agent="physics">Physics</button>
+                </div>
+                <div class="observation-panel" role="tabpanel" tabindex="0">
+                  <div class="observation-panel-meta">
+                    <p class="analysis-kicker">Observation Agent</p>
+                    <span class="observation-counter">01 / 04</span>
+                  </div>
+                  <h4 class="analysis-title">Texture Agent</h4>
+                  <p class="analysis-copy">Facial skin appears overly smooth and airbrushed. The hair looks waxy and lacks strand detail. Soft hairline boundaries and painterly foliage suggest synthetic texture.</p>
+                </div>
+              </section>
+            </div>
+            <aside class="case-analysis">
+              <section class="model-comparison" aria-label="Comparison of model outputs for Appendix Figure 1">
+                <p class="comparison-heading">Stable appearance can create a false consensus</p>
+                <div class="comparison-block baseline-block">
+                  <p class="contrast-caption"><span>Shortcut consensus</span> Two models repeat the same unsupported Real conclusion.</p>
+                  <article class="model-output-card missed-output" tabindex="0" data-output-key="case1-gpt" aria-haspopup="dialog" aria-expanded="false">
+                    <header><strong>GPT-4o</strong><span class="output-status"><span class="verdict-pill verdict-real">Real</span><span class="accuracy-pill is-incorrect">Incorrect</span></span></header>
+                    <p><span class="wrong-evidence">Consistent facial features and movements</span>, natural lighting and shadows, and <span class="wrong-evidence">no visible manipulation artifacts</span>.</p>
+                    <small><b>Missed</b> the persistent foreground–background motion mismatch.</small>
+                    <span class="output-hover-hint">Hover for full output <span aria-hidden="true">↗</span></span>
+                  </article>
+                  <article class="model-output-card missed-output" tabindex="0" data-output-key="case1-mimo" aria-haspopup="dialog" aria-expanded="false">
+                    <header><strong>MiMo-V2.5</strong><span class="output-status"><span class="verdict-pill verdict-real">Real</span><span class="accuracy-pill is-incorrect">Incorrect</span></span></header>
+                    <p><span class="wrong-evidence">Subtle motion appears organic</span>; facial identity, illumination, and the outdoor scene remain <span class="wrong-evidence">visually coherent</span>.</p>
+                    <small><b>Missed</b> frozen gaze, rigid hair, and weak facial micro-motion.</small>
+                    <span class="output-hover-hint">Hover for full output <span aria-hidden="true">↗</span></span>
+                  </article>
+                </div>
+                <div class="comparison-turn" aria-hidden="true"><span>Independent evidence breaks the consensus</span></div>
+                <div class="comparison-block judge-block">
+                  <p class="contrast-caption"><span>ARGUS correction</span> Four observers surface complementary evidence for the judge.</p>
+                  <article class="model-output-card argus-output judge-output-card">
+                    <header><strong>ARGUS · Judge Agent</strong><span class="output-status"><span class="verdict-pill verdict-fake">Fake</span><span class="accuracy-pill is-correct">Correct</span></span></header>
+                    <p>The subject's face remains almost completely frozen, with no blinking, micro-expressions, or gaze shifts, while the hair behaves like a rigid mass lacking strand-level motion. In contrast, yellow leaves, dark branches, and bright patches continuously shift and rearrange across frames, creating a <span class="decisive-evidence">clear foreground–background motion mismatch</span>. This unnatural separation persists throughout the sequence. Overly smooth skin and weak lighting integration provide additional evidence. These <span class="decisive-evidence">temporal and material inconsistencies</span> indicate an AI-generated video.</p>
+                    <small><b>Judge answer</b> Fake</small>
+                  </article>
+                </div>
+              </section>
+            </aside>
+          </div>
+        </article>
+
+        <article class="evidence-study" data-case="case2">
+          <div class="case-study-head">
+            <div class="case-title-block">
+              <span class="case-figure-label">Appendix Figure 3</span>
+              <h3 class="title is-4">Independence matters more than longer reasoning</h3>
+              <span class="truth-tag verdict-fake">Ground truth · Fake</span>
+            </div>
+          </div>
+          <div class="case-study-grid">
+            <div class="case-viewer">
+              <div class="case-image-wrap">
+                <img class="case-image" src="static/images/cases/case2_f1.jpg" alt="Sampled frame 1 from Appendix Figure 3" decoding="async">
+                <span class="frame-label">Frame 01 / 09</span>
+              </div>
+              <div class="filmstrip" role="listbox" aria-label="Appendix Figure 3 sampled frames"></div>
+              <section class="frame-insight agent-observation" aria-label="Appendix Figure 3 observation agents">
+                <div class="observation-switcher" role="tablist" aria-label="Choose an observation agent">
+                  <button class="observation-tab active" type="button" role="tab" aria-selected="true" data-agent="texture">Texture</button>
+                  <button class="observation-tab" type="button" role="tab" aria-selected="false" data-agent="lighting">Lighting</button>
+                  <button class="observation-tab" type="button" role="tab" aria-selected="false" data-agent="motion">Motion</button>
+                  <button class="observation-tab" type="button" role="tab" aria-selected="false" data-agent="physics">Physics</button>
+                </div>
+                <div class="observation-panel" role="tabpanel" tabindex="0">
+                  <div class="observation-panel-meta">
+                    <p class="analysis-kicker">Observation Agent</p>
+                    <span class="observation-counter">01 / 04</span>
+                  </div>
+                  <h4 class="analysis-title">Texture Agent</h4>
+                  <p class="analysis-copy">The skin has an unnaturally smooth, waxy quality with a lack of fine pores and micro-textures. Severe blending artifacts, unnatural warping, and overly bright regions lack natural shading.</p>
+                </div>
+              </section>
+            </div>
+            <aside class="case-analysis">
+              <section class="model-comparison" aria-label="Comparison of reasoning outputs for Appendix Figure 3">
+                <p class="comparison-heading">More steps do not guarantee better evidence</p>
+                <div class="comparison-block baseline-block">
+                  <p class="contrast-caption"><span>Shortcut consensus</span> Three strategies converge on the same unsupported Real conclusion.</p>
+                  <article class="model-output-card missed-output" tabindex="0" data-output-key="case2-single" aria-haspopup="dialog" aria-expanded="false">
+                    <header><strong>Single · Qwen2.5-VL</strong><span class="output-status"><span class="verdict-pill verdict-real">Real</span><span class="accuracy-pill is-incorrect">Incorrect</span></span></header>
+                    <p>Hand gesture and lighting appear <span class="wrong-evidence">consistent</span>, with <span class="wrong-evidence">no obvious artifacts or motion inconsistencies</span>.</p>
+                    <span class="output-hover-hint">Hover for full output <span aria-hidden="true">↗</span></span>
+                  </article>
+                  <article class="model-output-card missed-output compact-output" tabindex="0" data-output-key="case2-cot" aria-haspopup="dialog" aria-expanded="false">
+                    <header><strong>Chain of Thought</strong><span class="output-status"><span class="verdict-pill verdict-real">Real</span><span class="accuracy-pill is-incorrect">Incorrect</span></span></header>
+                    <p>Interprets texture, lighting, motion, hair, and facial geometry as <span class="wrong-evidence">mutually consistent</span>.</p>
+                    <span class="output-hover-hint">Hover for full output <span aria-hidden="true">↗</span></span>
+                  </article>
+                  <article class="model-output-card missed-output compact-output" tabindex="0" data-output-key="case2-multiturn" aria-haspopup="dialog" aria-expanded="false">
+                    <header><strong>Multi-turn</strong><span class="output-status"><span class="verdict-pill verdict-real">Real</span><span class="accuracy-pill is-incorrect">Incorrect</span></span></header>
+                    <p>Each successive turn <span class="wrong-evidence">reinforces the initial benign reading</span> and concludes that <span class="wrong-evidence">all cues are coherent</span>.</p>
+                    <span class="output-hover-hint">Hover for full output <span aria-hidden="true">↗</span></span>
+                  </article>
+                </div>
+                <div class="comparison-turn" aria-hidden="true"><span>Independent evidence breaks the consensus</span></div>
+                <div class="comparison-block judge-block">
+                  <p class="contrast-caption"><span>ARGUS correction</span> Four observers expose the evidence hidden by serial reasoning.</p>
+                  <article class="model-output-card argus-output judge-output-card">
+                    <header><strong>ARGUS · Judge Agent</strong><span class="output-status"><span class="verdict-pill verdict-fake">Fake</span><span class="accuracy-pill is-correct">Correct</span></span></header>
+                    <p>The subject's eyes show a <span class="decisive-evidence">complete absence of biological motion</span>: they remain wide open and fixed in a glassy stare throughout the clip, lacking the involuntary saccades, blinks, or micro-movements inherent to a living person. The facial expression is unnaturally static. The skin texture is overly smooth and waxy, devoid of fine pores and imperfections. The hand gesture lacks the subtle, dynamic tension of a real human hand and appears more like a digital overlay. These superficial cues are outweighed by <span class="decisive-evidence">profound failures in simulating basic human physiology and anatomy</span>.</p>
+                    <small><b>Judge answer</b> Fake</small>
+                  </article>
+                </div>
+              </section>
+            </aside>
+          </div>
+        </article>
+
+      </div>
+    </section>
+
+    <section class="section hero is-light" id="prompts">
+      <div class="container is-max-desktop">
+        <h2 class="title is-3 has-text-centered">Prompt Templates</h2>
+        <p class="section-lead">Browse the substantive Appendix F prompt instructions without expanding the page. Runtime data fields are omitted for clarity.</p>
+        <div class="prompt-select-wrap">
+          <label for="prompt-select">Choose a template</label>
+          <div class="select is-fullwidth"><select id="prompt-select"></select></div>
+        </div>
+        <div class="prompt-explorer" id="prompt-explorer">
+          <nav class="prompt-nav" id="prompt-nav" role="tablist" aria-label="Prompt templates"></nav>
+          <section class="prompt-viewer" role="tabpanel" aria-live="polite">
+            <header class="prompt-viewer-head">
+              <div><span class="prompt-viewer-group"></span><h3 class="prompt-viewer-title"></h3></div>
+              <button class="button is-small is-light copy-prompt" type="button"><span class="icon"><i class="fas fa-copy"></i></span><span class="copy-text">Copy prompt</span></button>
+            </header>
+            <pre class="prompt-code"></pre>
+          </section>
+        </div>
+      </div>
+    </section>
+
+    <section class="section" id="Cite">
+      <div class="container is-max-desktop content">
+        <div class="bibtex-header">
+          <h2 class="title is-3">Cite</h2>
+          <button class="button is-small is-light copy-bibtex-btn" type="button" id="copy-bibtex">
+            <span class="icon"><i class="fas fa-copy"></i></span><span class="copy-text">Copy</span>
+          </button>
+        </div>
+        <pre id="bibtex-code"><code>@misc{argus,
+      title={Multi-Agent Forensic Reasoning for Generalizable Deepfake Video Detection}, 
+      author={Xuechao Zou and Shun Zhang and Kai Li and Yi Zhou and Xinyu Sun and Yuhui Chen and Zhe Wu and Congyan Lang and Junliang Xing},
+      year={2026},
+      eprint={2608.06865},
+      archivePrefix={arXiv},
+      primaryClass={cs.CV},
+      url={https://arxiv.org/abs/2608.06865}, 
+}</code></pre>
+      </div>
+    </section>
+  </main>
+
+  <aside class="output-popover" id="output-popover" role="dialog" aria-modal="false" aria-hidden="true" aria-labelledby="output-popover-title">
+    <header class="output-popover-header">
+      <div>
+        <p class="output-popover-kicker">Complete model output</p>
+        <h3 id="output-popover-title"></h3>
+      </div>
+      <button class="output-popover-close" type="button" aria-label="Close model output">×</button>
+    </header>
+    <div class="output-popover-meta">
+      <span class="output-popover-source"></span>
+      <span class="output-popover-status output-status"></span>
+    </div>
+    <pre class="output-popover-copy"></pre>
+  </aside>
+
+  <footer class="footer">
+    <div class="container">
+      <div class="columns is-centered">
+        <div class="column is-8 content has-text-centered">
+          <p>This page uses the <a href="https://github.com/eliahuhorwitz/Academic-project-page-template" target="_blank" rel="noopener">Academic Project Page Template</a>, adapted from the <a href="https://nerfies.github.io" target="_blank" rel="noopener">Nerfies</a> project page.</p>
+        </div>
+      </div>
+    </div>
+  </footer>
+</body>
+</html>
