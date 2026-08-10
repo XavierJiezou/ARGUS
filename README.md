@@ -7,6 +7,7 @@
 Multi-Agent Forensic Reasoning for Generalizable Deepfake Video Detection
 
 [![Project Page](https://img.shields.io/badge/Project%20Page-ARGUS-blue)](https://xavierjiezou.github.io/ARGUS/)
+[![HuggingFace Paper](https://img.shields.io/badge/%F0%9F%A4%97HuggingFace-Daily%20Paper-blue)](https://huggingface.co/papers/2608.06865)
 [![HuggingFace Space](https://img.shields.io/badge/%F0%9F%A4%97HuggingFace-Space-yellow)](https://huggingface.co/spaces/XavierJiezou/ARGUS)
 [![HuggingFace Models](https://img.shields.io/badge/%F0%9F%A4%97HuggingFace-Models-green)](https://huggingface.co/XavierJiezou/argus-models)
 [![HuggingFace Datasets](https://img.shields.io/badge/%F0%9F%A4%97HuggingFace-Datasets-orange)](https://huggingface.co/datasets/XavierJiezou/ARGUS-datasets)
