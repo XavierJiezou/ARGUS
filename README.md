@@ -1,4 +1,4 @@
-# FaceVid Academic Project Page
+# ARGUS Project Page
 
 A restrained academic project page for **Multi-Agent Forensic Reasoning for Generalizable Deepfake Video Detection**, built from the [Academic Project Page Template](https://github.com/eliahuhorwitz/Academic-project-page-template).
 
