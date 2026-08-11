@@ -246,6 +246,10 @@ If you find ARGUS useful for your research, please consider citing our work:
 }
 ```
 
+## Acknowledgement
+
+We would like to thank [Hongyi Liu](https://github.com/Laimerfin) for the contribution to the [Project Page](https://xavierjiezou.github.io/ARGUS/).
+
 ## License
 
 This project is licensed under the Apache License 2.0. See [LICENSE](LICENSE) for
