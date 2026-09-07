@@ -7,12 +7,12 @@
 Multi-Agent Forensic Reasoning for Generalizable Deepfake Video Detection
 
 [![Project Page](https://img.shields.io/badge/Project%20Page-ARGUS-blue)](https://xavierjiezou.github.io/ARGUS/)
+[![arXiv](https://img.shields.io/badge/arXiv-2608.06865-b31b1b.svg)](https://arxiv.org/abs/2608.06865)
 [![HuggingFace Paper](https://img.shields.io/badge/%F0%9F%A4%97HuggingFace-Daily%20Paper-blue)](https://huggingface.co/papers/2608.06865)
 [![HuggingFace Space](https://img.shields.io/badge/%F0%9F%A4%97HuggingFace-Space-yellow)](https://huggingface.co/spaces/XavierJiezou/ARGUS)
 [![HuggingFace Models](https://img.shields.io/badge/%F0%9F%A4%97HuggingFace-Models-green)](https://huggingface.co/XavierJiezou/argus-models)
 [![HuggingFace Datasets](https://img.shields.io/badge/%F0%9F%A4%97HuggingFace-Datasets-orange)](https://huggingface.co/datasets/XavierJiezou/ARGUS-datasets)
 <!--[![License: Apache 2.0](https://img.shields.io/badge/License-Apache%202.0-lightgrey.svg)](LICENSE)-->
-<!--[![arXiv](https://img.shields.io/badge/arXiv-TODO-b31b1b.svg)](ARXIV_LINK_TO_BE_ADDED)-->
 
 ![ARGUS method pipeline](assets/method_pipeline.png)
 
