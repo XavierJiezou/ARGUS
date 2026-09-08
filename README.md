@@ -169,6 +169,17 @@ ARGUS/                            # repository root
 ```
 
 
+- Web demo (Gradio / Hugging Face Space)
+
+Run the demo locally with the files in [`hf_space/`](hf_space) or deploy them directly to a Hugging Face Space:
+
+```bash
+cd hf_space
+pip install -r requirements.txt
+python app.py
+```
+
+
 - Inference one video and read the verdict on the terminal
 
 ```bash
