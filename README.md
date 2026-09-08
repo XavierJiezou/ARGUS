@@ -17,10 +17,6 @@ Multi-Agent Forensic Reasoning for Generalizable Deepfake Video Detection
 
 ![ARGUS method pipeline](assets/method_pipeline.png)
 
-[Open the ARGUS Online Demo](https://huggingface.co/spaces/XavierJiezou/ARGUS)
-
-![ARGUS Hugging Face Space inference demo](assets/HF-space.png)
-
 </div>
 
 ## 1. Install the environment
@@ -179,6 +175,9 @@ pip install -r requirements.txt
 python app.py
 ```
 
+<!--[Open the ARGUS Online Demo](https://huggingface.co/spaces/XavierJiezou/ARGUS)-->
+
+![ARGUS Hugging Face Space inference demo](assets/HF-space.png)
 
 - Inference one video and read the verdict on the terminal
 
